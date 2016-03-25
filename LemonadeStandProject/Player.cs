@@ -8,5 +8,9 @@ namespace LemonadeStandProject
 {
     class Player
     {
+        public Player()
+        {
+            
+        }
     }
 }

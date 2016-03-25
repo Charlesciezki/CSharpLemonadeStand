@@ -21,9 +21,15 @@ namespace LemonadeStandProject
     {
         static void Main(string[] args)
         {
-        Customer customer = new Customer();
-            customer.customers();
-            Console.ReadKey();
+        //Customer customer = new Customer();
+        //    customer.customers();
+            UserInterface interFace = new UserInterface();
+            for (int i = 0; i < 5; i++)
+            {
+                
+                interFace.MainMenu();
+                Console.ReadKey();
+            }
 
 
         }

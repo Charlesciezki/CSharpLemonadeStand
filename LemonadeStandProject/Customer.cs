@@ -16,7 +16,7 @@ namespace LemonadeStandProject
 
         public void customers()
         {
-            for (int customer = 0; customer < 33; customer++)
+            for (int customer = 0; customer < random.Next(33, 56); customer++)
             {
                 AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11), random.Next(0, 5));
                 AngryCustomerList.Add(angryCustomer);
@@ -27,24 +27,24 @@ namespace LemonadeStandProject
                 ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26), random.Next(0, 5));
                 ThirstyCustomerList.Add(thirstyCustomer);
             }
-            foreach (AngryCustomer customer in AngryCustomerList)
-            {
-                Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
-            }
+            //foreach (AngryCustomer customer in AngryCustomerList)
+            //{
+            //    Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
+            //}
 
-            Console.WriteLine("----------------------------------------------");
+            //Console.WriteLine("----------------------------------------------");
 
-            foreach (NormalCustomer customer in NormalCustomerList)
-            {
-                Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
-            }
+            //foreach (NormalCustomer customer in NormalCustomerList)
+            //{
+            //    Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
+            //}
 
-            Console.WriteLine("----------------------------------------------");
+            //Console.WriteLine("----------------------------------------------");
 
-            foreach (ThirstyCustomer customer in ThirstyCustomerList)
-            {
-                Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
-            }
+            //foreach (ThirstyCustomer customer in ThirstyCustomerList)
+            //{
+            //    Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
+            //}
         }
 
     }

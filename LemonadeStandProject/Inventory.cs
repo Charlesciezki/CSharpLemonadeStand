@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandProject
 {
-    class Inventory
+    public class Inventory
     {
+        public List<string> lemonsList = new List<string>();
+        public List<string> iceList = new List<string>();
+        public List<string> cupList = new List<string>();
+        public List<string> sugarList = new List<string>();
+
+        public Inventory()
+        {
+
+        }
     }
 }
