@@ -21,15 +21,14 @@ namespace LemonadeStandProject
 
             Console.WriteLine("Enter 1 to go to the store!");
             int MainMenuChoice = Convert.ToInt32(Console.ReadLine());
-
+            Console.Clear();
             switch (MainMenuChoice)
             {
                 case 1:
-                    
-                    goToStore.BuyCups();
-                    goToStore.BuyIce();
                     goToStore.BuyLemons();
+                    goToStore.BuyCups();
                     goToStore.BuySugar();
+                    goToStore.BuyIce();
                     break;
             }
 
