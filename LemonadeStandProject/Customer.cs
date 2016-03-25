@@ -18,20 +18,33 @@ namespace LemonadeStandProject
         {
             for (int customer = 0; customer < 33; customer++)
             {
-                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11));
+                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11), random.Next(0, 5));
                 AngryCustomerList.Add(angryCustomer);
 
-                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21));
+                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21), random.Next(0, 5));
                 NormalCustomerList.Add(normalCustomer);
 
-                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26));
+                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26), random.Next(0, 5));
                 ThirstyCustomerList.Add(thirstyCustomer);
             }
             foreach (AngryCustomer customer in AngryCustomerList)
             {
-                Console.WriteLine(customer.AngryCustomerBaseChance);
+                Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
             }
 
+            Console.WriteLine("----------------------------------------------");
+
+            foreach (NormalCustomer customer in NormalCustomerList)
+            {
+                Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
+            }
+
+            Console.WriteLine("----------------------------------------------");
+
+            foreach (ThirstyCustomer customer in ThirstyCustomerList)
+            {
+                Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
+            }
         }
 
     }

@@ -8,10 +8,14 @@ namespace LemonadeStandProject
 {
     public class NormalCustomer
     {
-        public List<NormalCustomer> NormalCustomerList = new List<NormalCustomer>();
-        public NormalCustomer(int n)
+        public List<string> NormalCustomerNames = new List<string>() { "Billy", "Bobby", "Susie", "Sarah", "Robert" };
+        public string NormalCustomerName;
+        public int NormalCustomerBaseChance;
+
+        public NormalCustomer(int n, int name)
         {
-            
+            NormalCustomerBaseChance = n;
+            NormalCustomerName = NormalCustomerNames[name];
         }
     }
 }

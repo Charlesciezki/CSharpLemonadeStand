@@ -8,10 +8,14 @@ namespace LemonadeStandProject
 {
     public class ThirstyCustomer
     {
-        public List<ThirstyCustomer> ThirstyCustomerList = new List<ThirstyCustomer>(); 
-        public ThirstyCustomer(int n)
-        {
-            
+        public List<string> ThirstyCustomerNames = new List<string>() { "Andrew", "Mike", "Adam", "Nick", "Dave" };
+        public int ThirstyCustomerBaseChance;
+        public string ThirstyCustomerName;
+        public ThirstyCustomer(int n, int name)
+        {            
+            ThirstyCustomerBaseChance = n;
+            ThirstyCustomerName = ThirstyCustomerNames[name];
+
         }
     }
 }

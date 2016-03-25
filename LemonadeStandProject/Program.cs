@@ -24,6 +24,8 @@ namespace LemonadeStandProject
         Customer customer = new Customer();
             customer.customers();
             Console.ReadKey();
+
+
         }
         
 
