@@ -21,14 +21,20 @@ namespace LemonadeStandProject
     {
         static void Main(string[] args)
         {
-        //Customer customer = new Customer();
-        //    customer.customers();
+            //Customer customer = new Customer();
+            //customer.customers();
+            //Console.ReadLine();
+            Console.WriteLine("Welcome to Lemonade Stand! The goal of the game is to make as much money as possible during gameplay!");
+            Console.WriteLine("You may choose 7, 14, or 21 days to play, each day customers will walk by,");
+            Console.WriteLine("and depending on your price per cup and the weather they may buy a cup from you.");
+            Console.WriteLine("----------------------------------------------------");
             UserInterface interFace = new UserInterface();
-            for (int i = 0; i < 5; i++)
+            bool RunGame = true;
+            while (RunGame)
             {
-                
+
                 interFace.MainMenu();
-                Console.ReadKey();
+                Console.WriteLine();
             }
 
 

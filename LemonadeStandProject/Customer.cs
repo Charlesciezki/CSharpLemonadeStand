@@ -31,7 +31,6 @@ namespace LemonadeStandProject
             //{
             //    Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
             //}
-
             //Console.WriteLine("----------------------------------------------");
 
             //foreach (NormalCustomer customer in NormalCustomerList)

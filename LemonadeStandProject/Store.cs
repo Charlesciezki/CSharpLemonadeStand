@@ -23,6 +23,7 @@ namespace LemonadeStandProject
         public int TotalCupsToBuy;
         public int TotalSugarToBuy;
         public int TotalIceToBuy;
+        public int continueToBuy;
         public Store()
         {
             MyWallet = myWallet.FirstDayWallet();
@@ -39,7 +40,12 @@ namespace LemonadeStandProject
             if (MyWallet < (pricePerLemon*TotalLemonsToBuy))
             {
                 Console.WriteLine("Not enough cash!");
-                BuyLemons();
+                Console.WriteLine("Continue buying lemons? Enter 1 for yes 2 for no.");
+               continueToBuy = Convert.ToInt32(Console.ReadLine());
+                if (continueToBuy == 1)
+                {
+                    BuyLemons();
+                }
             } else if (MyWallet > (pricePerLemon*TotalLemonsToBuy))
             {
                 AddLemons();
@@ -55,6 +61,7 @@ namespace LemonadeStandProject
                 MyWallet = MyWallet - (pricePerLemon* TotalLemonsToBuy);
                 Console.WriteLine("You have $" + MyWallet + " left!");
                 Console.WriteLine("you have " + lemonsList.Count + " lemons left!");
+            Console.ReadLine();
         }
 
         public void BuyCups()
@@ -66,10 +73,17 @@ namespace LemonadeStandProject
             if (MyWallet < (pricePerCup * TotalCupsToBuy))
             {
                 Console.WriteLine("Not enough cash!");
-                BuyCups();
+                Console.WriteLine("Continue buying cups? Enter 1 for yes 2 for no.");
+                continueToBuy = Convert.ToInt32(Console.ReadLine());
+                if (continueToBuy == 1)
+                {
+                 BuyCups();
+                }
+                
             }
             else if (MyWallet > (pricePerCup * TotalCupsToBuy))
             {
+
                 AddCups();
             }
         }
@@ -83,6 +97,7 @@ namespace LemonadeStandProject
             MyWallet = MyWallet - (pricePerCup * TotalCupsToBuy);
             Console.WriteLine("You have $" + MyWallet + " left!");
             Console.WriteLine("you have " + cupList.Count + " cups left!");
+            Console.ReadLine();
         }
 
         public void BuySugar()
@@ -94,7 +109,13 @@ namespace LemonadeStandProject
             if (MyWallet < (pricePerSugar * TotalSugarToBuy))
             {
                 Console.WriteLine("Not enough cash!");
-                BuySugar();
+                Console.WriteLine("Continue buying sugar? Enter 1 for yes 2 for no.");
+                continueToBuy = Convert.ToInt32(Console.ReadLine());
+                if (continueToBuy == 1)
+                {
+                    BuySugar();
+                }
+                
             }
             else if (MyWallet > (pricePerSugar * TotalSugarToBuy))
             {
@@ -111,19 +132,26 @@ namespace LemonadeStandProject
             MyWallet = MyWallet - (pricePerSugar * TotalSugarToBuy);
             Console.WriteLine("You have $" + MyWallet + " left!");
             Console.WriteLine("you have " + sugarList.Count + " sugars left!");
+            Console.ReadLine();
         }
 
         public void BuyIce()
         {
-            priceForIceCubes = .80;
+            priceForIceCubes = .8;
             Console.WriteLine("You buy ice by the 100");
             Console.WriteLine("Price per 100 ice cubes is $.80");
-            Console.WriteLine("How many do you wish to buy? NOTE: whatever you enter you will get that x 100 icecubes.");
+            Console.WriteLine("How many do you wish to buy? NOTE: whatever you enter you will get that x 100 icecubes.");            
             TotalIceToBuy = Convert.ToInt32(Console.ReadLine());
             if (MyWallet < (priceForIceCubes * TotalIceToBuy))
             {
                 Console.WriteLine("Not enough cash!");
-                BuyIce();
+                Console.WriteLine("Continue buying ice? Enter 1 for yes 2 for no.");
+                continueToBuy = Convert.ToInt32(Console.ReadLine());
+                if (continueToBuy == 1)
+                {
+                    BuyIce();
+                }
+                
             }
             else if (MyWallet > (priceForIceCubes * TotalIceToBuy))
             {
@@ -137,9 +165,10 @@ namespace LemonadeStandProject
             {
                 iceList.Add(ice);
             }
-            MyWallet = MyWallet - (pricePerSugar * TotalSugarToBuy);
+            MyWallet = MyWallet - (priceForIceCubes * TotalIceToBuy);
             Console.WriteLine("You have $" + MyWallet + " left!");
             Console.WriteLine("you have " + iceList.Count + " icecubes left!");
+            Console.ReadLine();
         }
     }
 }
