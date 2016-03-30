@@ -9,9 +9,9 @@ namespace LemonadeStandProject
     public class ThirstyCustomer
     {
         public List<string> ThirstyCustomerNames = new List<string>() { "Andrew", "Mike", "Adam", "Nick", "Dave" };
-        public int ThirstyCustomerBaseChance;
+        public double ThirstyCustomerBaseChance;
         public string ThirstyCustomerName;
-        public ThirstyCustomer(int n, int name)
+        public ThirstyCustomer(double n, int name)
         {            
             ThirstyCustomerBaseChance = n;
             ThirstyCustomerName = ThirstyCustomerNames[name];

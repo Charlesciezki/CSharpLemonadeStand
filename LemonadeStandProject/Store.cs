@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandProject
 {
-    public class Store : Wallet
+    public class Store
     {
-        public Wallet myWallet = new Wallet();
+        public Inventory inventory = new Inventory();
+        public Wallet playerWallet = new Wallet();
         public string lemon = "Lemon";
         public string ice = "Ice";
         public string cup = "Cup";
@@ -17,157 +18,195 @@ namespace LemonadeStandProject
         public double pricePerLemon;
         public double pricePerCup;
         public double pricePerSugar;
-        public double priceForIceCubes;
-        public double MyWallet;
+        public double priceForIceCubes;        
         public int TotalLemonsToBuy;
         public int TotalCupsToBuy;
         public int TotalSugarToBuy;
         public int TotalIceToBuy;
         public int continueToBuy;
+        public double MyWallet;
+        public double MyTotalWallet;
+
         public Store()
         {
-            MyWallet = myWallet.FirstDayWallet();
-            Console.WriteLine(MyWallet);
+            MyWallet = playerWallet.FirstDayWallet();
+            Console.WriteLine("You look at your feet and you find $" + MyWallet);
+            MyTotalWallet = MyWallet;
         }
 
-        public void BuyLemons()
+        public int BuyLemons()
         {
-            
+            Console.ForegroundColor = ConsoleColor.Red;
+
             pricePerLemon = .07;
             Console.WriteLine("Price per lemon is $.07");
             Console.WriteLine("How many do you wish to buy?");
-            TotalLemonsToBuy = Convert.ToInt32(Console.ReadLine());
-            if (MyWallet < (pricePerLemon*TotalLemonsToBuy))
+            bool success = Int32.TryParse(Console.ReadLine() ,out TotalLemonsToBuy);
+            if (success == false)
+            {
+               return BuyLemons();
+            }
+            if (MyTotalWallet < (pricePerLemon*TotalLemonsToBuy))
             {
                 Console.WriteLine("Not enough cash!");
                 Console.WriteLine("Continue buying lemons? Enter 1 for yes 2 for no.");
-               continueToBuy = Convert.ToInt32(Console.ReadLine());
-                if (continueToBuy == 1)
+                bool willYouContinueToBuy = Int32.TryParse(Console.ReadLine(), out continueToBuy);
+                if (willYouContinueToBuy == false)
                 {
-                    BuyLemons();
+                    return BuyLemons();
                 }
-            } else if (MyWallet > (pricePerLemon*TotalLemonsToBuy))
+            }
+            else if (MyTotalWallet > (pricePerLemon*TotalLemonsToBuy))
             {
                 AddLemons();
             }
+            return 1;
         }
 
         public void AddLemons()
         {
-              for (int i = 0; i<TotalLemonsToBuy; i++)
-                {
-                    lemonsList.Add(lemon);
-                }
-                MyWallet = MyWallet - (pricePerLemon* TotalLemonsToBuy);
-                Console.WriteLine("You have $" + MyWallet + " left!");
-                Console.WriteLine("you have " + lemonsList.Count + " lemons left!");
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            for (int i = 0; i < TotalLemonsToBuy; i++)
+            {
+                inventory.lemonsList.Add(lemon);
+            }
+            MyTotalWallet = MyTotalWallet - (pricePerLemon*TotalLemonsToBuy);
+            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("you have " + inventory.lemonsList.Count + " lemons left!");
             Console.ReadLine();
         }
 
-        public void BuyCups()
+        public int BuyCups()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             pricePerCup = .03;
             Console.WriteLine("Price per cup is $.03");
             Console.WriteLine("How many do you wish to buy?");
-            TotalCupsToBuy = Convert.ToInt32(Console.ReadLine());
-            if (MyWallet < (pricePerCup * TotalCupsToBuy))
+            bool success = Int32.TryParse(Console.ReadLine(), out TotalCupsToBuy);
+            if (success == false)
+            {
+             return BuyCups();
+            }
+            if (MyTotalWallet < (pricePerCup*TotalCupsToBuy))
             {
                 Console.WriteLine("Not enough cash!");
                 Console.WriteLine("Continue buying cups? Enter 1 for yes 2 for no.");
-                continueToBuy = Convert.ToInt32(Console.ReadLine());
-                if (continueToBuy == 1)
+                bool willYouContinueToBuy = Int32.TryParse(Console.ReadLine(), out continueToBuy);
+                if (willYouContinueToBuy == false)
                 {
-                 BuyCups();
+                   return BuyCups();
                 }
-                
+
             }
-            else if (MyWallet > (pricePerCup * TotalCupsToBuy))
+            else if (MyTotalWallet > (pricePerCup*TotalCupsToBuy))
             {
 
                 AddCups();
             }
+            return 1;
         }
 
         public void AddCups()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             for (int i = 0; i < TotalCupsToBuy; i++)
             {
-                cupList.Add(cup);
+                inventory.cupList.Add(cup);
             }
-            MyWallet = MyWallet - (pricePerCup * TotalCupsToBuy);
-            Console.WriteLine("You have $" + MyWallet + " left!");
-            Console.WriteLine("you have " + cupList.Count + " cups left!");
+            MyTotalWallet = MyTotalWallet - (pricePerCup*TotalCupsToBuy);
+            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("you have " + inventory.cupList.Count + " cups left!");
             Console.ReadLine();
         }
-
-        public void BuySugar()
+        public int BuySugar()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             pricePerSugar = .07;
             Console.WriteLine("The price per pile of sugar is $.07");
             Console.WriteLine("How many do you wish to buy?");
-            TotalSugarToBuy = Convert.ToInt32(Console.ReadLine());
-            if (MyWallet < (pricePerSugar * TotalSugarToBuy))
+            bool success = Int32.TryParse(Console.ReadLine(), out TotalSugarToBuy);
+            if (success == false)
+            {
+                return BuySugar();
+            }
+            if (MyTotalWallet < (pricePerSugar * TotalSugarToBuy))
             {
                 Console.WriteLine("Not enough cash!");
                 Console.WriteLine("Continue buying sugar? Enter 1 for yes 2 for no.");
-                continueToBuy = Convert.ToInt32(Console.ReadLine());
-                if (continueToBuy == 1)
+                bool willYouContinueToBuy = Int32.TryParse(Console.ReadLine(), out continueToBuy);
+                if (willYouContinueToBuy == false)
                 {
-                    BuySugar();
+                   return BuySugar();
                 }
-                
+
             }
-            else if (MyWallet > (pricePerSugar * TotalSugarToBuy))
+            else if (MyTotalWallet > (pricePerSugar * TotalSugarToBuy))
             {
-                AddSugar();
+                  AddSugar();
             }
+            return 1;
         }
 
         public void AddSugar()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             for (int i = 0; i < TotalSugarToBuy; i++)
             {
-                sugarList.Add(sugar);
+                inventory.sugarList.Add(sugar);
             }
-            MyWallet = MyWallet - (pricePerSugar * TotalSugarToBuy);
-            Console.WriteLine("You have $" + MyWallet + " left!");
-            Console.WriteLine("you have " + sugarList.Count + " sugars left!");
+            MyTotalWallet = MyTotalWallet - (pricePerSugar * TotalSugarToBuy);
+            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("you have " + inventory.sugarList.Count + " sugars left!");
             Console.ReadLine();
         }
 
-        public void BuyIce()
+        public int BuyIce()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             priceForIceCubes = .8;
             Console.WriteLine("You buy ice by the 100");
             Console.WriteLine("Price per 100 ice cubes is $.80");
-            Console.WriteLine("How many do you wish to buy? NOTE: whatever you enter you will get that x 100 icecubes.");            
-            TotalIceToBuy = Convert.ToInt32(Console.ReadLine());
-            if (MyWallet < (priceForIceCubes * TotalIceToBuy))
+            Console.WriteLine("How many do you wish to buy? NOTE: whatever you enter you will get that x 100 icecubes.");
+            bool success = Int32.TryParse(Console.ReadLine(), out TotalIceToBuy);
+            if (success == false)
+            {
+                return BuyIce();
+            }
+            if (MyTotalWallet < (priceForIceCubes * TotalIceToBuy))
             {
                 Console.WriteLine("Not enough cash!");
                 Console.WriteLine("Continue buying ice? Enter 1 for yes 2 for no.");
-                continueToBuy = Convert.ToInt32(Console.ReadLine());
-                if (continueToBuy == 1)
+                bool willYouContinueToBuy = Int32.TryParse(Console.ReadLine(), out continueToBuy);
+                if (willYouContinueToBuy == false)
                 {
-                    BuyIce();
+                   return BuyIce();
                 }
-                
+
             }
-            else if (MyWallet > (priceForIceCubes * TotalIceToBuy))
+            else if (MyTotalWallet > (priceForIceCubes * TotalIceToBuy))
             {
                 AddIce();
             }
+            return 1;
         }
 
         public void AddIce()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+
             for (int i = 0; i < (TotalIceToBuy * 100); i++)
             {
-                iceList.Add(ice);
+                inventory.iceList.Add(ice);
             }
-            MyWallet = MyWallet - (priceForIceCubes * TotalIceToBuy);
-            Console.WriteLine("You have $" + MyWallet + " left!");
-            Console.WriteLine("you have " + iceList.Count + " icecubes left!");
+            MyTotalWallet = MyTotalWallet - (priceForIceCubes * TotalIceToBuy);
+            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("you have " + inventory.iceList.Count + " icecubes left!");
             Console.ReadLine();
         }
     }

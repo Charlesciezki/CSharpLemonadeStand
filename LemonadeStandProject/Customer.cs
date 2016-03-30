@@ -12,38 +12,39 @@ namespace LemonadeStandProject
         public List<AngryCustomer> AngryCustomerList = new List<AngryCustomer>();
         public List<NormalCustomer> NormalCustomerList = new List<NormalCustomer>();
         public List<ThirstyCustomer> ThirstyCustomerList = new List<ThirstyCustomer>();
+        public double theModifier;
 
-
-        public void customers()
+        public void customers(double modifier) //TAKE IN THE TOTAL MODIFIER FROM DAY CLASS AND PUT IT AS AN + TO BASECHANCE!!!!!!!!!!!
         {
+            theModifier = modifier;
             for (int customer = 0; customer < random.Next(33, 56); customer++)
             {
-                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11), random.Next(0, 5));
+                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11) + theModifier, random.Next(0, 5));
                 AngryCustomerList.Add(angryCustomer);
 
-                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21), random.Next(0, 5));
+                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21) + theModifier, random.Next(0, 5));
                 NormalCustomerList.Add(normalCustomer);
 
-                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26), random.Next(0, 5));
+                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26) + theModifier, random.Next(0, 5));
                 ThirstyCustomerList.Add(thirstyCustomer);
             }
-            //foreach (AngryCustomer customer in AngryCustomerList)
-            //{
-            //    Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
-            //}
-            //Console.WriteLine("----------------------------------------------");
+            foreach (AngryCustomer customer in AngryCustomerList)
+            {
+                Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
+            }
+            Console.WriteLine("----------------------------------------------");
 
-            //foreach (NormalCustomer customer in NormalCustomerList)
-            //{
-            //    Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
-            //}
+            foreach (NormalCustomer customer in NormalCustomerList)
+            {
+                Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
+            }
 
-            //Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("----------------------------------------------");
 
-            //foreach (ThirstyCustomer customer in ThirstyCustomerList)
-            //{
-            //    Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
-            //}
+            foreach (ThirstyCustomer customer in ThirstyCustomerList)
+            {
+                Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
+            }
         }
 
     }

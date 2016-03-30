@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace LemonadeStandProject
 {
@@ -21,13 +22,13 @@ namespace LemonadeStandProject
     {
         static void Main(string[] args)
         {
-            //Customer customer = new Customer();
-            //customer.customers();
-            //Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine("Welcome to Lemonade Stand! The goal of the game is to make as much money as possible during gameplay!");
-            Console.WriteLine("You may choose 7, 14, or 21 days to play, each day customers will walk by,");
+            Console.WriteLine("You may choose 7, 14, or 21 days to play, each day customers will walk by,"); 
             Console.WriteLine("and depending on your price per cup and the weather they may buy a cup from you.");
             Console.WriteLine("----------------------------------------------------");
+
             UserInterface interFace = new UserInterface();
             bool RunGame = true;
             while (RunGame)
@@ -39,8 +40,6 @@ namespace LemonadeStandProject
 
 
         }
-        
-
-        }
+     }
  }
 

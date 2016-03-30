@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandProject
 {
-    public class Wallet : Inventory
+    public class Wallet
     {
         public double currentAmountInWallet;
         public Wallet()

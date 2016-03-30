@@ -8,7 +8,7 @@ namespace LemonadeStandProject
 {
     public class Weather
     {
-        public Day day = new Day();
+        
         public Random random = new Random();
         public int randomWeather;
         public int numberOfGamePlayDays;
@@ -26,10 +26,11 @@ namespace LemonadeStandProject
 
         }
 
-        public void WeatherStarter()
+        public void WeatherStarter(Day day)
         {
             numberOfGamePlayDays = day.amountOfDaysToPlay();
-            Console.WriteLine(numberOfGamePlayDays);
+            Console.WriteLine("You've selected " + numberOfGamePlayDays + " days!");
+            Console.WriteLine("Here's the weather prediction for the next " + numberOfGamePlayDays + " days:");
             weatherPredictionList = assembleWeatherList();
         }
 
@@ -65,8 +66,11 @@ namespace LemonadeStandProject
                 }
 
             }
+
             foreach (string weather in weatherPredictionList)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 i = i + 1;
                 Console.WriteLine("Day " + i + " " + weather);
 
@@ -77,6 +81,8 @@ namespace LemonadeStandProject
 
         public void ShowTheWeather()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             foreach (string weather in weatherPredictionList)
             {
                 

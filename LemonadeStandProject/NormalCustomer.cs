@@ -10,9 +10,9 @@ namespace LemonadeStandProject
     {
         public List<string> NormalCustomerNames = new List<string>() { "Billy", "Bobby", "Susie", "Sarah", "Robert" };
         public string NormalCustomerName;
-        public int NormalCustomerBaseChance;
+        public double NormalCustomerBaseChance;
 
-        public NormalCustomer(int n, int name)
+        public NormalCustomer(double n, int name)
         {
             NormalCustomerBaseChance = n;
             NormalCustomerName = NormalCustomerNames[name];
