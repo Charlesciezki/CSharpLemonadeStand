@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStandProject
 {
@@ -14,37 +14,40 @@ namespace LemonadeStandProject
         public List<ThirstyCustomer> ThirstyCustomerList = new List<ThirstyCustomer>();
         public double theModifier;
 
-        public void customers(double modifier) //TAKE IN THE TOTAL MODIFIER FROM DAY CLASS AND PUT IT AS AN + TO BASECHANCE!!!!!!!!!!!
+        public void customers(double modifier)
         {
             theModifier = modifier;
             for (int customer = 0; customer < random.Next(33, 56); customer++)
             {
-                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11) + theModifier, random.Next(0, 5));
+                AngryCustomer angryCustomer = new AngryCustomer(random.Next(5, 11) + theModifier, random.Next(0, 8));
                 AngryCustomerList.Add(angryCustomer);
 
-                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21) + theModifier, random.Next(0, 5));
+                NormalCustomer normalCustomer = new NormalCustomer(random.Next(10, 21) + theModifier, random.Next(0, 9));
                 NormalCustomerList.Add(normalCustomer);
 
-                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26) + theModifier, random.Next(0, 5));
+                ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26) + theModifier, random.Next(0, 9));
                 ThirstyCustomerList.Add(thirstyCustomer);
             }
-            foreach (AngryCustomer customer in AngryCustomerList)
-            {
-                Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
-            }
-            Console.WriteLine("----------------------------------------------");
+            //foreach (AngryCustomer customer in AngryCustomerList)
+            //{
+            //    Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
+            //    Thread.Sleep(50);
+            //}
+            //Console.WriteLine("----------------------------------------------");
 
-            foreach (NormalCustomer customer in NormalCustomerList)
-            {
-                Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
-            }
+            //foreach (NormalCustomer customer in NormalCustomerList)
+            //{
+            //    Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
+            //    Thread.Sleep(50);
+            //}
 
-            Console.WriteLine("----------------------------------------------");
+            //Console.WriteLine("----------------------------------------------");
 
-            foreach (ThirstyCustomer customer in ThirstyCustomerList)
-            {
-                Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
-            }
+            //foreach (ThirstyCustomer customer in ThirstyCustomerList)
+            //{
+            //    Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
+            //    Thread.Sleep(50);
+            //}
         }
 
     }

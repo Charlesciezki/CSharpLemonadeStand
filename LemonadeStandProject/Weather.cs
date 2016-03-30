@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStandProject
 {
@@ -73,6 +73,7 @@ namespace LemonadeStandProject
 
                 i = i + 1;
                 Console.WriteLine("Day " + i + " " + weather);
+                Thread.Sleep(50);
 
             }
 
@@ -87,6 +88,7 @@ namespace LemonadeStandProject
             {
                 
                 Console.WriteLine(weather);
+                Thread.Sleep(50);
 
             }
         }

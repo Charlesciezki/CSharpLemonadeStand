@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStandProject
 {
@@ -32,7 +32,8 @@ namespace LemonadeStandProject
 
         Console.WriteLine("Enter 1 to go to the store!");
         Console.WriteLine("Enter 2 to show the weather!");
-        Console.WriteLine("Enter 3 to exit");
+        Console.WriteLine("Enter 3 to start the day!");
+        Console.WriteLine("Enter 4 to exit");
             bool MainMenuMistakeCatcher = Int32.TryParse(Console.ReadLine(), out MainMenuChoice);
             if (MainMenuMistakeCatcher == false)
             {
@@ -50,13 +51,18 @@ namespace LemonadeStandProject
                     weather.ShowTheWeather();                    
                     break;
                 case 3:
-                    Console.WriteLine("I guess this is goodbye...");
-                    Console.ReadLine();
-                    Environment.Exit(0);
+                    day.BeginTheDay();
+                    day.DayCycle();
                     break;
                 case 4:
-                    day.BeginTheDay();
-                   break;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("I guess this is goodbye...");
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    break;
             }
             return 1;
 

@@ -11,7 +11,7 @@ namespace LemonadeStandProject
         public double AngryCustomerBaseChance;
         public string AngryCustomerName;
 
-        public List<string> AngryCustomerNames = new List<string>() {"Charles", "Tyler", "Justin", "Greg", "Kevin"};
+        public List<string> AngryCustomerNames = new List<string>() {"Charles", "Tyler", "Justin", "Greg", "Kevin", "Tom", "Joe", "Gary"};
 
         public AngryCustomer(double n, int name)
         {

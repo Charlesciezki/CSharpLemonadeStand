@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStandProject
 {
@@ -30,7 +30,6 @@ namespace LemonadeStandProject
         public Store()
         {
             MyWallet = playerWallet.FirstDayWallet();
-            Console.WriteLine("You look at your feet and you find $" + MyWallet);
             MyTotalWallet = MyWallet;
         }
 
@@ -38,8 +37,10 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerLemon = .07;
-            Console.WriteLine("Price per lemon is $.07");
+            pricePerLemon = .05;
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
+            Console.WriteLine("you have " + inventory.lemonsList.Count + " lemons left!");
+            Console.WriteLine("Price per lemon is $.05");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine() ,out TotalLemonsToBuy);
             if (success == false)
@@ -72,7 +73,7 @@ namespace LemonadeStandProject
                 inventory.lemonsList.Add(lemon);
             }
             MyTotalWallet = MyTotalWallet - (pricePerLemon*TotalLemonsToBuy);
-            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2") + " left!");
             Console.WriteLine("you have " + inventory.lemonsList.Count + " lemons left!");
             Console.ReadLine();
         }
@@ -81,8 +82,10 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerCup = .03;
-            Console.WriteLine("Price per cup is $.03");
+            pricePerCup = .02;
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
+            Console.WriteLine("you have " + inventory.cupList.Count + " cups left!");
+            Console.WriteLine("Price per cup is $.02");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine(), out TotalCupsToBuy);
             if (success == false)
@@ -117,7 +120,7 @@ namespace LemonadeStandProject
                 inventory.cupList.Add(cup);
             }
             MyTotalWallet = MyTotalWallet - (pricePerCup*TotalCupsToBuy);
-            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2") + " left!");
             Console.WriteLine("you have " + inventory.cupList.Count + " cups left!");
             Console.ReadLine();
         }
@@ -125,8 +128,10 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerSugar = .07;
-            Console.WriteLine("The price per pile of sugar is $.07");
+            pricePerSugar = .05;
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
+            Console.WriteLine("you have " + inventory.sugarList.Count + " sugars left!");
+            Console.WriteLine("The price per pile of sugar is $.05");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine(), out TotalSugarToBuy);
             if (success == false)
@@ -160,7 +165,7 @@ namespace LemonadeStandProject
                 inventory.sugarList.Add(sugar);
             }
             MyTotalWallet = MyTotalWallet - (pricePerSugar * TotalSugarToBuy);
-            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("You have $" + MyTotalWallet.ToString("C2") + " left!");
             Console.WriteLine("you have " + inventory.sugarList.Count + " sugars left!");
             Console.ReadLine();
         }
@@ -169,9 +174,11 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            priceForIceCubes = .8;
+            priceForIceCubes = .5;
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
+            Console.WriteLine("you have " + inventory.iceList.Count + " icecubes left!");
             Console.WriteLine("You buy ice by the 100");
-            Console.WriteLine("Price per 100 ice cubes is $.80");
+            Console.WriteLine("Price per 100 ice cubes is $.50");
             Console.WriteLine("How many do you wish to buy? NOTE: whatever you enter you will get that x 100 icecubes.");
             bool success = Int32.TryParse(Console.ReadLine(), out TotalIceToBuy);
             if (success == false)
@@ -205,7 +212,7 @@ namespace LemonadeStandProject
                 inventory.iceList.Add(ice);
             }
             MyTotalWallet = MyTotalWallet - (priceForIceCubes * TotalIceToBuy);
-            Console.WriteLine("You have $" + MyTotalWallet + " left!");
+            Console.WriteLine("You have " + MyTotalWallet.ToString("C2") + " left!");
             Console.WriteLine("you have " + inventory.iceList.Count + " icecubes left!");
             Console.ReadLine();
         }
