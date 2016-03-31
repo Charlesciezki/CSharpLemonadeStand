@@ -16,6 +16,7 @@ namespace LemonadeStandProject
         public int MainMenuChoice;
 
 
+
         public UserInterface()
         {
             day = new Day(goToStore, weather, goToStore.playerWallet);
@@ -42,12 +43,10 @@ namespace LemonadeStandProject
             switch (MainMenuChoice)
             {
                 case 1:
-                    goToStore.BuyLemons();
-                    goToStore.BuyCups();
-                    goToStore.BuySugar();
-                    goToStore.BuyIce();
+                    goToStore.StoreSwitchCase();
                     break;
                 case 2:
+                    Console.WriteLine("You have " + weather.weatherPredictionList.Count + " days left!");
                     weather.ShowTheWeather();                    
                     break;
                 case 3:

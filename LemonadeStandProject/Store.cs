@@ -26,6 +26,7 @@ namespace LemonadeStandProject
         public int continueToBuy;
         public double MyWallet;
         public double MyTotalWallet;
+        public int StoreSwitchChoice;
 
         public Store()
         {
@@ -33,14 +34,64 @@ namespace LemonadeStandProject
             MyTotalWallet = MyWallet;
         }
 
+        public int StoreSwitchCase()
+        {
+            bool IsShopping = true;
+            while (IsShopping == true)
+            {
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine("Welcome to the store! What would you like to buy?");
+                Console.WriteLine("Enter 1 to go through and buy all Lemonade ingredients");
+                Console.WriteLine("Enter 2 to buy Lemons");
+                Console.WriteLine("Enter 3 to buy cups");
+                Console.WriteLine("Enter 4 to buy sugar");
+                Console.WriteLine("Enter 5 to buy ice");
+                Console.WriteLine("Enter 6 to exit store");
+                bool WhatWillYouBuy = Int32.TryParse(Console.ReadLine(), out StoreSwitchChoice);
+                if (WhatWillYouBuy == false)
+                {
+                    return StoreSwitchChoice;
+                }
+                switch (StoreSwitchChoice)
+                {
+                    case 1:
+                        BuyLemons();
+                        BuyCups();
+                        BuySugar();
+                        BuyIce();
+                        break;
+                    case 2:
+                        BuyLemons();
+                        break;
+                    case 3:
+                        BuyCups();
+                        break;
+                    case 4:
+                        BuySugar();
+                        break;
+                    case 5:
+                        BuyIce();
+                        break;
+                    case 6:
+                        IsShopping = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return 1;
+        }
+
         public int BuyLemons()
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerLemon = .05;
+            pricePerLemon = .03;
             Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
             Console.WriteLine("you have " + inventory.lemonsList.Count + " lemons left!");
-            Console.WriteLine("Price per lemon is $.05");
+            Console.WriteLine("Price per lemon is $.03");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine() ,out TotalLemonsToBuy);
             if (success == false)
@@ -82,10 +133,10 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerCup = .02;
+            pricePerCup = .01;
             Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
             Console.WriteLine("you have " + inventory.cupList.Count + " cups left!");
-            Console.WriteLine("Price per cup is $.02");
+            Console.WriteLine("Price per cup is $.01");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine(), out TotalCupsToBuy);
             if (success == false)
@@ -128,10 +179,10 @@ namespace LemonadeStandProject
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            pricePerSugar = .05;
+            pricePerSugar = .04;
             Console.WriteLine("You have " + MyTotalWallet.ToString("C2"));
             Console.WriteLine("you have " + inventory.sugarList.Count + " sugars left!");
-            Console.WriteLine("The price per pile of sugar is $.05");
+            Console.WriteLine("The price per pile of sugar is $.04");
             Console.WriteLine("How many do you wish to buy?");
             bool success = Int32.TryParse(Console.ReadLine(), out TotalSugarToBuy);
             if (success == false)

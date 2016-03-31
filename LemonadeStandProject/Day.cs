@@ -23,6 +23,7 @@ namespace LemonadeStandProject
         public Weather TheWeather;
         public Wallet TheWallet;
         public UserInterface TheInterface;
+
         public Day(Store goToTheStore, Weather theWeather, Wallet thePlayerWallet)
         {
 
@@ -30,6 +31,7 @@ namespace LemonadeStandProject
             TheWeather = theWeather;
             TheWallet = thePlayerWallet;
         }
+
         public int amountOfDaysToPlay()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -48,6 +50,7 @@ namespace LemonadeStandProject
 
             return daysToPlay;
         }
+
         public double SetPriceForDay()
         {
             Console.WriteLine("How much would you like to sell each cup for?");
@@ -55,7 +58,7 @@ namespace LemonadeStandProject
             bool success = double.TryParse(Console.ReadLine(), out priceForTheDay);
             if (success == false)
             {
-               return SetPriceForDay();
+                return SetPriceForDay();
             }
             if (priceForTheDay > .5)
             {
@@ -70,23 +73,28 @@ namespace LemonadeStandProject
             if (TheWeather.weatherPredictionList[0] == "Sunny and Humid")
             {
                 weatherModifier = 60;
-            } else if (TheWeather.weatherPredictionList[0] == "Sunny")
+            }
+            else if (TheWeather.weatherPredictionList[0] == "Sunny")
             {
                 weatherModifier = 50;
-            } else if (TheWeather.weatherPredictionList[0] == "Storming and Humid")
+            }
+            else if (TheWeather.weatherPredictionList[0] == "Storming and Humid")
             {
                 weatherModifier = 40;
-            } else if (TheWeather.weatherPredictionList[0] == "Storming")
+            }
+            else if (TheWeather.weatherPredictionList[0] == "Storming")
+            {
+                weatherModifier = 35;
+            }
+            else if (TheWeather.weatherPredictionList[0] == "Overcast")
             {
                 weatherModifier = 30;
-            } else if (TheWeather.weatherPredictionList[0] == "Overcast")
+            }
+            else if (TheWeather.weatherPredictionList[0] == "Foggy")
             {
                 weatherModifier = 25;
-            } else if (TheWeather.weatherPredictionList[0] == "Foggy")
-            {
-                weatherModifier = 20;
             }
-            
+
             return weatherModifier;
         }
 
@@ -96,39 +104,28 @@ namespace LemonadeStandProject
             if (priceForTheDay > .25)
             {
                 priceModifier = 0;
-            } else if (priceForTheDay < .25 && priceForTheDay > .19)
+            }
+            else if (priceForTheDay < .25 && priceForTheDay > .19)
             {
                 priceModifier = 5;
-            } else if (priceForTheDay < .20 && priceForTheDay > .14)
+            }
+            else if (priceForTheDay < .20 && priceForTheDay > .14)
             {
                 priceModifier = 10;
-            }else if (priceForTheDay < .15)
+            }
+            else if (priceForTheDay < .15)
             {
                 priceModifier = 15;
             }
             return priceModifier;
         }
 
-        public void interfaceshit()
-        {
-            foreach (string lemons in theStore.inventory.lemonsList)
-            {
-                Console.WriteLine(lemons);
-            }
-            foreach (string sugar in theStore.inventory.sugarList)
-            {
-                Console.WriteLine(sugar);
-            }
-            foreach (string cups in theStore.inventory.cupList)
-            {
-                Console.WriteLine(cups);
-            }
-            Console.WriteLine("You have " + theStore.inventory.iceList.Count + " icecubes left.");
-        }
 
         public Customer BeginTheDay()
         {
+
             Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("You have " + TheWeather.weatherPredictionList.Count + " days left!");
             Console.WriteLine("It's looking like it's going to be " + TheWeather.weatherPredictionList[0]);
 
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -136,7 +133,7 @@ namespace LemonadeStandProject
             priceModify = ThePriceModifier(price);
             weatherModify = TheWeatherModifier();
             totalModify = (priceModify + weatherModify);
-            
+
 
             Customer customer = new Customer();
             Console.WriteLine("Total modifier is " + totalModify);
@@ -146,7 +143,14 @@ namespace LemonadeStandProject
 
         }
 
-        public int DayCycle()
+        public void DayCycle()
+        {
+            CycleThroughAngry();
+            CycleThroughNormal();
+            CycleThroughThirsty();
+        }
+
+        public int CycleThroughAngry()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             for (int i = 0; i < TheCustomer.AngryCustomerList.Count; i++)
@@ -174,9 +178,9 @@ namespace LemonadeStandProject
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("NO INVENTORY LEFT");
                         Console.WriteLine("YOUR MISTAKE ENDED YOUR DAY!");
-                    
+
                         return EndDay();
-                        
+
                     }
                 }
                 else
@@ -185,6 +189,11 @@ namespace LemonadeStandProject
                 }
 
             }
+            return 1;
+        }
+
+        public int CycleThroughNormal()
+        {
             for (int i = 0; i < TheCustomer.NormalCustomerList.Count; i++)
             {
                 Thread.Sleep(50);
@@ -212,7 +221,7 @@ namespace LemonadeStandProject
                         Console.WriteLine("YOUR MISTAKE ENDED YOUR DAY!");
 
                         return EndDay();
-                        
+
                     }
                 }
                 else
@@ -221,6 +230,11 @@ namespace LemonadeStandProject
                 }
 
             }
+            return 1;
+        }
+
+        public int CycleThroughThirsty()
+        {
             for (int i = 0; i < TheCustomer.ThirstyCustomerList.Count; i++)
             {
                 Thread.Sleep(50);
@@ -248,7 +262,7 @@ namespace LemonadeStandProject
                         Console.WriteLine("YOUR MISTAKE ENDED YOUR DAY!");
 
                         return EndDay();
-                        
+
                     }
                 }
                 else
@@ -263,32 +277,71 @@ namespace LemonadeStandProject
 
         public int EndDay()
         {
-            Thread.Sleep(50);
+
             if (TheWeather.weatherPredictionList.Count <= 1)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Your game has ended!");
-                Console.WriteLine("You played for " + daysToPlay);
-                Console.WriteLine("You started out with $20, and now you have " + theStore.MyTotalWallet.ToString("C2"));
-                Console.ReadLine();
-                Thread.Sleep(5000);
-                Environment.Exit(0);
+               return GameOver();
             }
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("The sun sets, thus ending your day....");
             Console.ForegroundColor = ConsoleColor.Red;
             TheWeather.weatherPredictionList.RemoveAt(0);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Your ice has melted!");
             theStore.inventory.iceList.Clear();
-            int totalCustomers = (TheCustomer.AngryCustomerList.Count + TheCustomer.NormalCustomerList.Count + TheCustomer.ThirstyCustomerList.Count);
-            Console.WriteLine("You had " + totalCustomers + " walk by today! And you sold " + TotalCupsSold);
+
+            HowDidYouDoToday();
+
+            Console.ForegroundColor = ConsoleColor.Red;
             double totalIncome = TotalCupsSold*priceForTheDay;
             Console.WriteLine("You made " + totalIncome.ToString("C2"));
-            Console.WriteLine("Ice = " + theStore.inventory.iceList.Count);
-            Console.WriteLine("Hit enter to continue!");            
+            Console.WriteLine("Hit enter to continue!");
             TotalCupsSold = 0;
             Console.ReadLine();
             Console.Clear();
             return 1;
         }
+
+        public int GameOver()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Your game has ended!");
+            Console.WriteLine("You played for " + daysToPlay + " days!");
+            Console.WriteLine("You started out with $20, and now you have " + theStore.MyTotalWallet.ToString("C2"));
+            Console.WriteLine("That means you've made " + (theStore.MyTotalWallet - 20).ToString("C2"));
+            Console.ReadLine();
+            Thread.Sleep(5000);
+            Environment.Exit(0);
+            return 1;
+        }
+
+        public void HowDidYouDoToday()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            int totalCustomers = (TheCustomer.AngryCustomerList.Count + TheCustomer.NormalCustomerList.Count +
+                      TheCustomer.ThirstyCustomerList.Count);
+            Console.WriteLine("You had " + totalCustomers + " walk by today! And you sold " + TotalCupsSold);
+            if (TotalCupsSold < 25)
+            {
+                
+                Console.WriteLine("You've done awful for the day...");
+            }
+            else if (TotalCupsSold < 50 && TotalCupsSold > 25)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You've done OK for the day.");
+            }
+            else if (TotalCupsSold < 75 && TotalCupsSold > 50)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You've done well for the day!");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You've done an amazing job today!!");
+            }
+        }
     }
-    }
+}
 
