@@ -275,45 +275,9 @@ namespace LemonadeStandProject
             return 1;
         }
 
-        public int EndDay()
-        {
 
-            if (TheWeather.weatherPredictionList.Count <= 1)
-            {
-               return GameOver();
-            }
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("The sun sets, thus ending your day....");
-            Console.ForegroundColor = ConsoleColor.Red;
-            TheWeather.weatherPredictionList.RemoveAt(0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Your ice has melted!");
-            theStore.inventory.iceList.Clear();
 
-            HowDidYouDoToday();
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            double totalIncome = TotalCupsSold*priceForTheDay;
-            Console.WriteLine("You made " + totalIncome.ToString("C2"));
-            Console.WriteLine("Hit enter to continue!");
-            TotalCupsSold = 0;
-            Console.ReadLine();
-            Console.Clear();
-            return 1;
-        }
-
-        public int GameOver()
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Your game has ended!");
-            Console.WriteLine("You played for " + daysToPlay + " days!");
-            Console.WriteLine("You started out with $20, and now you have " + theStore.MyTotalWallet.ToString("C2"));
-            Console.WriteLine("That means you've made " + (theStore.MyTotalWallet - 20).ToString("C2"));
-            Console.ReadLine();
-            Thread.Sleep(5000);
-            Environment.Exit(0);
-            return 1;
-        }
 
         public void HowDidYouDoToday()
         {
@@ -341,6 +305,44 @@ namespace LemonadeStandProject
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("You've done an amazing job today!!");
             }
+        }
+        public int EndDay()
+        {
+
+            if (TheWeather.weatherPredictionList.Count <= 1)
+            {
+               return GameOver();
+            }
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("The sun sets, thus ending your day....");
+            Console.ForegroundColor = ConsoleColor.Red;
+            TheWeather.weatherPredictionList.RemoveAt(0);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Your ice has melted!");
+            theStore.inventory.iceList.Clear();
+
+            HowDidYouDoToday();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            double totalIncome = TotalCupsSold*priceForTheDay;
+            Console.WriteLine("You made " + totalIncome.ToString("C2"));
+            Console.WriteLine("Hit enter to continue!");
+            TotalCupsSold = 0;
+            Console.ReadLine();
+            Console.Clear();
+            return 1;
+        }
+        public int GameOver()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Your game has ended!");
+            Console.WriteLine("You played for " + daysToPlay + " days!");
+            Console.WriteLine("You started out with $20, and now you have " + theStore.MyTotalWallet.ToString("C2"));
+            Console.WriteLine("That means you've made " + (theStore.MyTotalWallet - 20).ToString("C2"));
+            Console.ReadLine();
+            Thread.Sleep(5000);
+            Environment.Exit(0);
+            return 1;
         }
     }
 }

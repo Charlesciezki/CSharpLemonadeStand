@@ -28,26 +28,6 @@ namespace LemonadeStandProject
                 ThirstyCustomer thirstyCustomer = new ThirstyCustomer(random.Next(20, 26) + theModifier, random.Next(0, 9));
                 ThirstyCustomerList.Add(thirstyCustomer);
             }
-            //foreach (AngryCustomer customer in AngryCustomerList)
-            //{
-            //    Console.WriteLine(customer.AngryCustomerBaseChance + " " + customer.AngryCustomerName);
-            //    Thread.Sleep(50);
-            //}
-            //Console.WriteLine("----------------------------------------------");
-
-            //foreach (NormalCustomer customer in NormalCustomerList)
-            //{
-            //    Console.WriteLine(customer.NormalCustomerBaseChance + " " + customer.NormalCustomerName);
-            //    Thread.Sleep(50);
-            //}
-
-            //Console.WriteLine("----------------------------------------------");
-
-            //foreach (ThirstyCustomer customer in ThirstyCustomerList)
-            //{
-            //    Console.WriteLine(customer.ThirstyCustomerBaseChance + " " + customer.ThirstyCustomerName);
-            //    Thread.Sleep(50);
-            //}
         }
 
     }

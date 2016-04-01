@@ -13,7 +13,6 @@ namespace LemonadeStandProject
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Thread.Sleep(500);
             Console.WriteLine(@"╦  ┌─┐┌┬┐┌─┐┌┐┌┌─┐┌┬┐┌─┐  ╔═╗┌┬┐┌─┐┌┐┌┌┬┐
 ║  ├┤ ││││ ││││├─┤ ││├┤   ╚═╗ │ ├─┤│││ ││
 ╩═╝└─┘┴ ┴└─┘┘└┘┴ ┴─┴┘└─┘  ╚═╝ ┴ ┴ ┴┘└┘─┴┘");

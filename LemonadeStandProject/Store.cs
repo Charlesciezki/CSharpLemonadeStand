@@ -37,6 +37,7 @@ namespace LemonadeStandProject
         public int StoreSwitchCase()
         {
             bool IsShopping = true;
+
             while (IsShopping == true)
             {
 
@@ -83,7 +84,6 @@ namespace LemonadeStandProject
             }
             return 1;
         }
-
         public int BuyLemons()
         {
             Console.ForegroundColor = ConsoleColor.Red;

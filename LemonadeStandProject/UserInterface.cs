@@ -15,18 +15,17 @@ namespace LemonadeStandProject
         public Inventory inventory;
         public int MainMenuChoice;
 
-
-
         public UserInterface()
         {
             day = new Day(goToStore, weather, goToStore.playerWallet);
             weather.WeatherStarter(day);
         }
-
         public int MainMenu()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-
+            Console.WriteLine(@"╦  ┌─┐┌┬┐┌─┐┌┐┌┌─┐┌┬┐┌─┐  ╔═╗┌┬┐┌─┐┌┐┌┌┬┐
+║  ├┤ ││││ ││││├─┤ ││├┤   ╚═╗ │ ├─┤│││ ││
+╩═╝└─┘┴ ┴└─┘┘└┘┴ ┴─┴┘└─┘  ╚═╝ ┴ ┴ ┴┘└┘─┴┘");
             Console.WriteLine("Welcome to the Lemonade Stand Menu!");
 
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -58,9 +57,6 @@ namespace LemonadeStandProject
                     Console.WriteLine("I guess this is goodbye...");
                     Thread.Sleep(2000);
                     Environment.Exit(0);
-                    break;
-
-                default:
                     break;
             }
             return 1;
